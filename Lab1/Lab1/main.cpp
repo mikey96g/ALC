@@ -1,14 +1,16 @@
-
+#include <algorithm>
 #include "Products.h"
 #include <iostream>
 
 using namespace std;
+bool wayToSort(int i, int j) { return i > j; }
 
 int main()
 {
 	int const num = 8;
 	Products *var[8];
 	int choice;
+	
 
 	Books * book;
 	Software * software;
@@ -58,7 +60,11 @@ int main()
 		cout << "\n\n";
 	}
 
-	
+	sort(begin(var), end(var), wayToSort);
+	for (int i =0; i = num;++i)
+	{
+		cout << var[i]->getGrossPrice();
+	}
 
 	system("pause");
 	return 0;
