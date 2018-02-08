@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-bool wayToSort(int i, int j) { return i > j; }
+bool wayToSort(Products *i, Products *j) { return i->getGrossPrice() < j->getGrossPrice(); }
 
 int main()
 {
@@ -60,10 +60,11 @@ int main()
 		cout << "\n\n";
 	}
 
-	sort(begin(var), end(var), wayToSort);
-	for (int i =0; i = num;++i)
+	std::sort(begin(var), end(var), wayToSort);
+	for (int i =0; i < num;++i)
 	{
 		cout << var[i]->getGrossPrice();
+		cout << "\n";
 	}
 
 	system("pause");
