@@ -16,7 +16,29 @@ public:
 	virtual void printname();
 protected:
 	string name;
-};class Employee : public Person{public:	void printname();private:	double salary;};class Customer: public Customer{public:	void printname();private:	string complaint;};
+};
+
+class Employee : public Person
+{
+public:
+	Employee(string,double);
+	void printname();
+
+private:
+	double salary;
+};
+
+
+class Customer: public Person
+{
+public:
+	Customer(string,string);
+	void printname();
+
+private:
+	string complaint;
+};
+
 
 
 #endif
