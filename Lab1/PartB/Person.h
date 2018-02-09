@@ -21,7 +21,7 @@ protected:
 class Employee : public Person
 {
 public:
-	Employee(string,double);
+	Employee(string nameInput,double salaryIn);
 	void printname();
 
 private:
@@ -32,7 +32,7 @@ private:
 class Customer: public Person
 {
 public:
-	Customer(string,string);
+	Customer(string);
 	void printname();
 
 private:
