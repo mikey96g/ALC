@@ -13,7 +13,7 @@ class Person
 {
 public:
 	Person(string); // initialise the name
-	virtual void printname();
+	void printname();
 protected:
 	string name;
 };
