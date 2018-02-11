@@ -2,8 +2,19 @@
 #include "Products.h"
 #include <iostream>
 
-using namespace std;
-bool wayToSort(Products *i, Products *j) { return i->getGrossPrice() < j->getGrossPrice(); }
+//using namespace std;
+
+/***************************************************************************************
+*    Usage: modified
+*    Title: Beginners guide to the std::sort() function
+*    Date: 09/02/2018
+*    Availability: http://www.cplusplus.com/articles/NhA0RXSz/
+***************************************************************************************/
+
+bool wayToSort(Products *i, Products *j)
+{
+	return i->getGrossPrice() < j->getGrossPrice(); 
+}
 
 int main()
 {
@@ -16,8 +27,8 @@ int main()
 	Software * software;
 
 	double price;
-	cout << "Enter Price: ";
-	cin >> price;
+	std::cout << "Enter Price: ";
+	std::cin >> price;
 
 	book = new Books(price);
 	software = new Software(price);
@@ -25,23 +36,23 @@ int main()
 	var[0] = book;
     var[1] = software;
 
-	cout << book->getGrossPrice();
-	cout << ("\n\n");
+	std::cout << book->getGrossPrice();
+	std::cout << ("\n\n");
 
-	cout << software->getGrossPrice();
+	std::cout << software->getGrossPrice();
 
-	cout << ("\n\n");
+	std::cout << ("\n\n");
 
 	for (int i = 2; i < num; i++)
 	{
 
-		cout << "Enter 1 for Software or 2 for Book: ";
-		cin >> choice;
+		std::cout << "Enter 1 for Software or 2 for Book: ";
+		std::cin >> choice;
 
-		cout << ("\n\n");
+		std::cout << ("\n\n");
 
-		cout << "Enter Price: ";
-		cin >> price;		
+		std::cout << "Enter Price: ";
+		std::cin >> price;		
 
 		if (choice == 1)
 		{
@@ -56,15 +67,15 @@ int main()
 
 	for (int i =0; i<num; i++)
 	{
-		cout << "The Price for item: " << (i +1) << " is: "<< var[i]->getGrossPrice();
-		cout << "\n\n";
+		std::cout << "The Price for item: " << (i +1) << " is: "<< var[i]->getGrossPrice();
+		std::cout << "\n\n";
 	}
 
-	std::sort(begin(var), end(var), wayToSort);
+	sort(begin(var), end(var), wayToSort);
 	for (int i =0; i < num;++i)
 	{
-		cout << var[i]->getGrossPrice();
-		cout << "\n";
+		std::cout << var[i]->getGrossPrice();
+		std::cout << "\n";
 	}
 
 	system("pause");
