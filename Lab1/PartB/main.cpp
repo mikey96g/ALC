@@ -8,9 +8,10 @@ int main()
 {
 	Person* personPtr;
 
-	personPtr = new Person("John");
+	//Class is now abstract cannot instantiate
+	/*personPtr = new Person("John");
 	personPtr->printname();
-	cout << "\n\n";
+	cout << "\n\n";*/
 
 
 	personPtr = new Employee("Jim", 20000);
