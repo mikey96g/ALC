@@ -9,8 +9,8 @@ void merge(int arraySortedInTwoHalves[], int startIndex, int length)
 	int n2 = length - m;
 
 	//temp arrarys
-	int *temp1 = new int[n1];
-	int *temp2 = new int[n2];
+	int *temp1 = new int[n1]();
+	int *temp2 = new int[n2]();
 
 	//copy data to temp arrarys
 	for (i = 0; i < n1; i++)
@@ -81,25 +81,22 @@ void mergeSort(int arraryToSort[],int startIndex, int length)
 
 }
 
-void printArray(int A[], int size)
-{
-	int i;
-	for (i = 0; i < size; i++)
-		printf("%d ", A[i]);
-	printf("\n");
-}
+
 
 int main()
 {
-	int arr[] = { 12, 11, 13, 5, 6, 7 };
-	int arr_size = sizeof(arr) / sizeof(arr[0]);
+	int arr[6] = { 2, 11, 13, 5, 6, 7 };
+	
 
-	printf("Given array is \n");
-	printArray(arr, arr_size);
-
-	mergeSort(arr, 0, arr_size - 1);
-	printf("\nSorted array is \n");
-	printArray(arr, arr_size);
+	for (int i = 0; i < 6; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+	mergeSort(arr, 0, 6 - 1);
+	for (int i = 0; i < 6; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
 
 	std::cout << "\n\n";
 	//system("pause");
