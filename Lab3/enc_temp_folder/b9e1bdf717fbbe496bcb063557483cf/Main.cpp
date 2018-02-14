@@ -58,13 +58,13 @@ void merge(int arraySortedInTwoHalves[], int startIndex, int length)
 
 void mergeSort(int arraryToSort[],int startIndex, int length)
 {
-	for (int i = 0;i <= length;i++)
+	/*for (int i = 0;i <= length;i++)
 	{
 		if (arraryToSort[i] > length && arraryToSort[i] <startIndex)
 		{
 			throw std::exception();
 		}
-	}
+	}*/
 
 	
 	if(startIndex < length)
@@ -97,7 +97,7 @@ int main()
 	printf("Given array is \n");
 	printArray(arr, arr_size);
 
-	mergeSort(arr, 0, arr_size - 1);
+	mergeSort(arr, 0, 6);
 	printf("\nSorted array is \n");
 	printArray(arr, arr_size);
 
