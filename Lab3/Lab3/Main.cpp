@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <exception>
 
+void merge(int arrayMerge[], int start, int end, int m) {};
 
 void mergeSort(int arraryToSort[],int startIndex, int length)
 {
@@ -26,9 +27,12 @@ void mergeSort(int arraryToSort[],int startIndex, int length)
 
 }
 
-void merge(int arrayMerge[],int start,int end, int m) {};
+
 
 int main()
 {
+	std::cout << "\n\n";
+	system("pause");
+	return 0;
 }
 
