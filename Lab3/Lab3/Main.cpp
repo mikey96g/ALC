@@ -1,105 +1,132 @@
 #include <iostream> 
 #include <exception>
 
-void merge(int arraySortedInTwoHalves[], int startIndex, int length) 
+void merge(int arraySortedInTwoHalves[], int startIndex, int length)
 {
-	int m = 1 + (length - 1) / 2;
-	int i, j, k;
-	int n1 = m - startIndex + 1;
-	int n2 = length - m;
+	int size = (length - startIndex) + 1;
+	int *b = new int[size]();
 
-	//temp arrarys
-	int *temp1 = new int[n1]();
-	int *temp2 = new int[n2]();
+	int i = startIndex;
+	int mid = (startIndex + length) / 2;
+	int k = 0;
+	int j = mid + 1;
 
-	//copy data to temp arrarys
-	for (i = 0; i < n1; i++)
-		temp1[i] = arraySortedInTwoHalves[startIndex + i];
-	for (j = 0; j < n2; j++)
-		temp2[j] = arraySortedInTwoHalves[m + 1 + j];
-
-	//merge the temp arrarys back into the arrary
-	i = 0; // Initial index of first subarray
-	j = 0; // Initial index of second subarray
-	k = startIndex; // Initial index of merged subarray
-
-	while (i < n1 && j < n2)
+	while (k < size)
 	{
-		if (temp1[i] <= temp2[j])
+		if((i<=mid) && (arraySortedInTwoHalves[i] <  arraySortedInTwoHalves[j]))
 		{
-			arraySortedInTwoHalves[k] = temp1[i];
-			i++;
+			b[k++] = arraySortedInTwoHalves[i++];
 		}
 		else
 		{
-			arraySortedInTwoHalves[k] = temp2[j];
-			j++;
+			b[k++] = arraySortedInTwoHalves[j++];
 		}
-		k++;
 
 	}
-	/* Copy the remaining elements of temp1, if there
-	are any */
-	while (i < n1)
-	{
-		arraySortedInTwoHalves[k] = temp1[i];
-		i++;
-		k++;
-	}
-	/* Copy the remaining elements of temp2, if there
-	are any */
-	while (j < n2)
-	{
-		arraySortedInTwoHalves[k] = temp2[i];
-		i++;
-		k++;
-	}
-};
 
-void mergeSort(int arraryToSort[],int startIndex, int length)
+	for(k=0; k < size; k++)
+	{
+		arraySortedInTwoHalves[startIndex + k] = b[k];
+	}
+	delete[]b;
+
+}
+
+//The recursive merge sort function
+void mergeSort(int iArray[], int startIndex, int endIndex)
 {
-	for (int i = 0;i <= length;i++)
+	int midIndex;
+
+	//Check for base case
+	if (startIndex >= endIndex)
 	{
-		if (arraryToSort[i] > length && arraryToSort[i] <startIndex)
+		return;
+	}
+
+	//First, divide in half
+	midIndex = (startIndex + endIndex) / 2;
+
+	//First recursive call
+	mergeSort(iArray, startIndex, midIndex);
+	//Second recursive call
+	mergeSort(iArray, midIndex + 1, endIndex);
+	//The merge function
+	merge(iArray, startIndex, endIndex);
+
+}
+
+//swap for pointers
+void swap(int* a,int* n)
+{
+	int t = *a;
+	*a = *n;
+	*n = t;
+}
+
+int quickSortDivide(int theArray[], int first, int last)
+{
+	int pivot = theArray[last];//pivot
+	int i = (first - 1); //Index of smaller element
+
+	for (int j = first; j<= last - 1; j++)
+	{
+		if(theArray[j]<=pivot)
 		{
-			throw std::exception();
+			i++;
+			swap(&theArray[i], &theArray[j]);						
 		}
 	}
+	swap(&theArray[i + 1], &theArray[last]);
+	return (i + 1);
+}
 
-	
-	if(startIndex < length)
+void quickSort(int theArray[], int first, int last)
+{
+	if(first < last)
 	{
-		//avoids overflow for large l and h
-		int m = 1 + (length - 1) / 2;
+		/*pi is partioning index, theArray[p] is now at the right place */
+		int pi = quickSortDivide(theArray, first, last);
 
-		//Sort first and second halves
-		mergeSort(arraryToSort, startIndex, m);
-		mergeSort(arraryToSort, m + 1, length);
+		/*Separately sort elements before divide and after divide*/
+		quickSort(theArray,first,pi -1);
+		quickSort(theArray, pi+1,last);
 
-		merge(arraryToSort, startIndex, length);
 	}
-
+}
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
+	int i;
+	for (i = 0; i < size; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
 }
 
 
 
 int main()
 {
-	int arr[6] = { 2, 11, 13, 5, 6, 7 };
+	/*int arr[10] = { 2,5,6,4,7,2,8,3,9,10 };
 	
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		std::cout << arr[i] << " ";
 	}
-	mergeSort(arr, 0, 6 - 1);
-	for (int i = 0; i < 6; i++)
+	mergeSort(arr, 0, 10-1);
+	for (int i = 0; i < 10; i++)
 	{
-		std::cout << arr[i] << " ";
-	}
+		std::cout << arr[i] << "\n\n ";
+	}*/
+
+	int arr[] = { 10, 7, 8, 9, 1, 5 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	quickSort(arr, 0, n - 1);
+	printf("Sorted array: \n");
+	printArray(arr, n);
 
 	std::cout << "\n\n";
-	//system("pause");
+	system("pause");
 	return 0;
 }
 
