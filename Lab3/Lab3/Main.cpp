@@ -1,6 +1,13 @@
 #include <iostream> 
 #include <exception>
 
+/***************************************************************************************
+*    Usage: modified
+*    Title: Merge sort
+*    Date: 16/02/2018
+*    Availability: http://www.cplusplus.com/forum/general/166536/
+***************************************************************************************/
+
 void merge(int arraySortedInTwoHalves[], int startIndex, int length)
 {
 	int size = (length - startIndex) + 1;
@@ -54,6 +61,13 @@ void mergeSort(int iArray[], int startIndex, int endIndex)
 	merge(iArray, startIndex, endIndex);
 
 }
+
+/***************************************************************************************
+*    Usage: used
+*    Title: QuickSort
+*    Date: 17/02/2018
+*    Availability: https://www.geeksforgeeks.org/quick-sort/
+***************************************************************************************/
 
 //swap for pointers
 void swap(int* a,int* n)
