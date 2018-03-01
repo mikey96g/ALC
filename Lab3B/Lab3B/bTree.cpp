@@ -12,6 +12,12 @@ int BTree::height()
 {
 	return height(root);
 }
+/***************************************************************************************
+*    Usage: modified
+*    Title: Find binary tree height
+*    Date: 01/03/2018
+*	 Availability: https://stackoverflow.com/questions/15994538/find-binary-tree-height
+***************************************************************************************/
 
 int BTree::height(BTreeNode * h)
 {
