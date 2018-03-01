@@ -1,7 +1,9 @@
+#include <string>
 #include <iostream>
-#include <exception>
+#include <cstdlib>
 
-template <class t> void swap(t *a,t *b)
+template<class t>
+void swap(t *a, t *b)
 {
 	t t = *a;
 	*a = *b;
@@ -9,21 +11,35 @@ template <class t> void swap(t *a,t *b)
 
 }
 
-template<class T> int quickSorting(T arr[i], first, last)
+template<class T>
+int partition(T arr[],int start, int last)
 {
-	int pivot = arr[last];
-	int i = first - 1;
+	T pivot = arr[last];
+	int i = start - 1;
 
-	for (int j = first; j <= last-1;j++)
+	for (int j = start; j < last;j++)
 	{
-		if (arr[j]<=pivot)
+		if (*(array[j]) <= (*pivot)) 
 		{
 			i++;
-			swap(&arr[i],arr[j])
+			swap(&arr[i], &arr[j]);
 		}
 	
-	
 	}
-	swap(&arr[i + 1], &arr[last]);
-	return(i + 1);
+	swap(arr[i+1],arr[pivot]);
+	return (i + 1);
+
 }
+
+template<class T>
+void quicksort(T ray[],int first,int last)
+{
+	pi = partition(ray, first, last);
+
+	quicksort(ray, first, pi - 1);
+	quicksort(ray, pi - 1, last);
+
+}
+
+
+
