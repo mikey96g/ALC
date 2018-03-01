@@ -19,12 +19,12 @@ private:
 class BTree
 {
 public:
-	BTree():root(NULL);
+	BTree() :root(NULL) {};
 	void add(int toAdd);
 	int height();
 private:
 
-	void height(BTreeNode *subTreeRoot);
+	int height(BTreeNode *h);
 	void add(int item, BTreeNode*& subTreeRoot);
 	BTreeNode * root;
 };
