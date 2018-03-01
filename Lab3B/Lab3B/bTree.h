@@ -1,25 +1,30 @@
 #pragma once
+#include <cstdlib>
+
 class BTreeNode
 {
 	friend class BTree;
 public:
-	BTreeNode(int);
+	BTreeNode(int data, BTreeNode* left, BTreeNode* right)
+		:data(data), leftPtr(left), rightPtr(right) {};
+
 
 private:
-	BTreeNode * left;
+	BTreeNode * leftPtr;
+	BTreeNode * rightPtr;
 	int data;
-	BTreeNode * right;
+
 };
 
 class BTree
 {
 public:
-	BTree();
+	BTree():root(NULL);
 	void add(int toAdd);
 	int height();
 private:
 
 	void height(BTreeNode *subTreeRoot);
-	void add(BTreeNode *toAdd, BTreeNode *addHere);
+	void add(int item, BTreeNode*& subTreeRoot);
 	BTreeNode * root;
 };
