@@ -16,6 +16,12 @@ private:
 
 };
 
+/***************************************************************************************
+*	Usage: modified
+*	Title: Absolute C++ (5th Edition) - Linked Data Structures, Pages:804-806
+*	Author: Savitch, W
+*	Date: 01/03/2018
+***************************************************************************************/
 class searchTree
 {
 public:

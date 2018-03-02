@@ -1,7 +1,12 @@
 #include "bSearchTree.h"
 #include <cstdlib>
 #include <iostream>
-
+/***************************************************************************************
+*	Usage: modified
+*	Title: Absolute C++ (5th Edition) - Linked Data Structures, Pages:804-806
+*	Author: Savitch, W
+*	Date: 01/03/2018
+***************************************************************************************/
 void searchTree::add(char toAdd)
 {
 	add(toAdd, root);

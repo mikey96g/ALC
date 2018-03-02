@@ -29,8 +29,14 @@ int BTree::height(BTreeNode * h)
 	int right = height(h->rightPtr);
 
 	return 1 + std::max(left, right);
+	
 }
-
+/***************************************************************************************
+*	Usage: modified
+*	Title: Absolute C++ (5th Edition) - Linked Data Structures, Pages:804-806
+*	Author: Savitch, W
+*	Date: 01/03/2018
+***************************************************************************************/
 void BTree::add(int item, BTreeNode *& subTreeRoot)
 {
 	if (subTreeRoot == NULL)
