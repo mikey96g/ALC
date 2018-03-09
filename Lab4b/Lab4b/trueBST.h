@@ -26,11 +26,13 @@ public:
 	int minValue();
 	int isBST();
 	int findMax();
+	int isBSTut();
 
 private:
 	void add(int item, BTreeNode*& subTreeRoot);
 	int minValue(BTreeNode * node);
 	int isBST(BTreeNode * node);
 	int findMax(BTreeNode * node);
+	int isBSTut(BTreeNode * node, int min, int max);
 	BTreeNode * root;
 };
