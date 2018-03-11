@@ -34,5 +34,7 @@ private:
 	int isBST(BTreeNode * node);
 	int findMax(BTreeNode * node);
 	int isBSTut(BTreeNode * node, int min, int max);
+	int isBSTut2(BTreeNode * node);
+
 	BTreeNode * root;
 };
