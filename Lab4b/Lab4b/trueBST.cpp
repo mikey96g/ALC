@@ -17,12 +17,25 @@ void BTree::add(int item, BTreeNode *& subTreeRoot)
 	else
 		add(item, subTreeRoot->rightPtr);
 }
-
+/***************************************************************************************
+*    Usage: modified
+*    Title: Find the node with minimum value in a Binary Search Tree
+*    Author: GeegsforGeeks
+*    Date: 9/02/2018
+*    Availability: https://www.geeksforgeeks.org/find-the-minimum-element-in-a-binary-search-tree/
+***************************************************************************************/
 int BTree::minValue()
 {
 	return minValue(root);
 }
 
+/***************************************************************************************
+*    Usage: modified
+*    Title: A program to check if a binary tree is BST or not
+*    Author: Abhinesh Garhwal
+*    Date: 9/02/2018
+*    Availability: https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
+***************************************************************************************/
 int BTree::isBST()
 {
 	return isBST(root);
@@ -35,13 +48,10 @@ int BTree::findMax()
 
 int BTree::isBSTut()
 {
-	return 0;
+	return isBSTut2(root);
 }
 
-//int BTree::isBSTut(BTreeNode * node)
-//{
-//	return (isBSTut(node, INT_MIN, INT_MAX));
-//}
+
 
 
 int BTree::minValue(BTreeNode * node)
@@ -88,14 +98,20 @@ int BTree::isBSTut(BTreeNode * node, int min, int max)
 	if (node == NULL)
 		return 1;
 
-	if (node->data < min || node->data >max)
+	if (node->data < min || node->data >max) {
 		return 0;
+	}
+	else {
+		return
+			isBSTut(node->leftPtr, min, node->data - 1) && // Allow only distinct values
+			isBSTut(node->rightPtr, node->data + 1, max); // Allow only distinct values
+	}
 
-	return
-		isBSTut(node->leftPtr, min, node->data - 1) && // Allow only distinct values
-		isBSTut(node->rightPtr, node->data + 1, max); // Allow only distinct values
+}
 
-
+int BTree::isBSTut2(BTreeNode * node)
+{
+	return (isBSTut(node,INT_MIN, INT_MAX));
 }
 
 int main()
