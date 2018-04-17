@@ -10,6 +10,7 @@ using namespace std;
 //http://www.dreamincode.net/forums/topic/49604-letter-frequencies-in-a-text-file/
 //https://www.geeksforgeeks.org/huffman-decoding/
 //https://stackoverflow.com/questions/4527686/how-to-update-stdmap-after-using-the-find-method
+//https://stackoverflow.com/questions/478075/creating-files-in-c
 
 map<char, int >charList;
 map<char, string> codes;
@@ -117,6 +118,35 @@ void encode()
 	outfile.close();
 }
 
+void decode(struct HuffmanNode* root)
+{
+	string ans = "";
+	ifstream infile;
+	ofstream outfile("decoded.txt");
+	infile.open("encoded.txt");
+
+	string encodedString;
+	while (getline(infile, encodedString));
+	struct HuffmanNode* current = root;
+	for (int i=0;i<encodedString.size();i++)
+	{
+		if (encodedString[i] == '0')
+			current = current->leftPtr;
+		else
+			current = current->rightPtr;
+
+		if(current->leftPtr==NULL and current->rightPtr==NULL)
+		{
+			ans += current->character;
+			current = root;
+		}		
+	}
+	outfile << ans;
+	outfile.close();
+
+	//return ans+'\0';
+};
+
 int main()
 {
 	char size = charList.size();
@@ -129,7 +159,7 @@ int main()
 
 	cout << endl;
 	cout << endl;
-	encode();
+	decode(minHeap.top());
 
 
 	system("pause");
