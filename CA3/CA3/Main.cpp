@@ -8,17 +8,37 @@
 using namespace std;
 //http://www.cplusplus.com/forum/beginner/66019/
 //http://www.dreamincode.net/forums/topic/49604-letter-frequencies-in-a-text-file/
+//https://www.geeksforgeeks.org/huffman-decoding/
 
 map<char, int >charList;
+map<char, string> codes;
 
 // Prints huffman codes from
 // the root of Huffman Tree.
+void characterFreq()
+{
+	ifstream infile;
+	char ch;
+
+	infile.open("Source.txt");
+
+
+	ch = infile.get();
+	while (ch != EOF)
+	{
+		charList[ch]++;
+		ch = infile.get();
+	}
+	for (auto character : charList)
+	{
+		cout << character.first << " : " << character.second << "\n";
+	}
+}
+
 void printCodes(struct HuffmanNode* root, string str)
 {
-
 	if (!root)
 		return;
-
 	if (root->character != '$')
 		cout << root->character << ": " << str << "\n";
 
@@ -26,15 +46,27 @@ void printCodes(struct HuffmanNode* root, string str)
 	printCodes(root->rightPtr, str + "1");
 }
 
-void HuffmanCodes(char characters[], int freq[], int size)
+void storeCodes(struct HuffmanNode* root, string str)
+{
+	if (root == NULL)
+		return;
+	if (root->character != '$')
+		codes[root->character] = str;
+	storeCodes(root->leftPtr, str + "0");
+	storeCodes(root->rightPtr, str + "1");
+}
+
+priority_queue<HuffmanNode*, vector<HuffmanNode*>, compare> minHeap;
+
+void HuffmanCodes(int size)
 {
 	struct HuffmanNode *left, *right, *top;
 
 	// Create a min heap & inserts all characters of data[]
-	priority_queue<HuffmanNode*, vector<HuffmanNode*>, compare> minHeap;
+	
+	for (map<char, int>::iterator v = charList.begin(); v != charList.end(); v++)
+		minHeap.push(new HuffmanNode(v->first, v->second));
 
-	for (int i = 0; i < size; ++i)
-		minHeap.push(new HuffmanNode(characters[i], freq[i]));
 	// Iterate while size of heap doesn't become 1
 	while (minHeap.size() != 1) {
 
@@ -42,7 +74,6 @@ void HuffmanCodes(char characters[], int freq[], int size)
 		// freq items from min heap
 		left = minHeap.top();
 		minHeap.pop();
-
 		right = minHeap.top();
 		minHeap.pop();
 
@@ -57,44 +88,23 @@ void HuffmanCodes(char characters[], int freq[], int size)
 
 		top->leftPtr = left;
 		top->rightPtr = right;
-
 		minHeap.push(top);
 	}
 	// Print Huffman codes using
 	// the Huffman tree built above
-	printCodes(minHeap.top(), "");
-}
-
-void characterFreq()
-{
-	ifstream infile;
-	char ch;
-
-	infile.open("Source.txt");
-	
-
-	ch = infile.get();
-	while (ch != EOF)
-	{
-		charList[ch]++;
-		ch = infile.get();
-	}
-	for (auto character : charList)
-	{
-		cout << character.first << " : " << character.second << "\n";
-	}
+	//printCodes(minHeap.top(), "");
+	storeCodes(minHeap.top(), "");
 }
 
 int main()
 {
+	char size = charList.size();
 	
-
-	char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' };
-	int freq[] = { 5, 9, 12, 13, 16, 45 };
-
-	int size = sizeof(arr) / sizeof(arr[0]);
+	
 	characterFreq();
-	HuffmanCodes(arr, freq, size);
+	HuffmanCodes(size);
+	cout << "\n";
+	printCodes(minHeap.top(), "");
 
 	system("pause");
 	return 0;

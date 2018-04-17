@@ -26,6 +26,7 @@ struct HuffmanNode
 
 // For comparison of
 // two heap nodes (needed in min heap)
+// utility function for the priority queue
 struct compare {
 
 	bool operator()(HuffmanNode* l, HuffmanNode* r)
