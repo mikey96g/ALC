@@ -9,6 +9,7 @@ using namespace std;
 //http://www.cplusplus.com/forum/beginner/66019/
 //http://www.dreamincode.net/forums/topic/49604-letter-frequencies-in-a-text-file/
 //https://www.geeksforgeeks.org/huffman-decoding/
+//https://stackoverflow.com/questions/4527686/how-to-update-stdmap-after-using-the-find-method
 
 map<char, int >charList;
 map<char, string> codes;
@@ -96,6 +97,26 @@ void HuffmanCodes(int size)
 	storeCodes(minHeap.top(), "");
 }
 
+void encode()
+{
+	ifstream infile;
+	char ch;
+	string temp;
+
+	infile.open("Source.txt");
+	ofstream outfile("encoded.txt");
+
+	ch = infile.get();
+	while (ch != EOF)
+	{
+		temp = codes.at(ch);
+		outfile << temp;
+		ch = infile.get();
+
+	}
+	outfile.close();
+}
+
 int main()
 {
 	char size = charList.size();
@@ -103,8 +124,13 @@ int main()
 	
 	characterFreq();
 	HuffmanCodes(size);
-	cout << "\n";
+	cout << endl;
 	printCodes(minHeap.top(), "");
+
+	cout << endl;
+	cout << endl;
+	encode();
+
 
 	system("pause");
 	return 0;
