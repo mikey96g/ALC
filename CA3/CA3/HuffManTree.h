@@ -7,8 +7,17 @@
 #include<vector>
 #include <queue>
 using namespace std;
-//https://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/
 
+
+/***************************************************************************************
+
+*    Usage: <used>
+*    Title: Huffman Decoding
+*    Author: Harshit Sidhwa
+*    Date: 19/04/2018
+*    Availability: https://www.geeksforgeeks.org/huffman-decoding/
+*
+***************************************************************************************/
 
 struct HuffmanNode
 {
@@ -24,9 +33,7 @@ struct HuffmanNode
 };
 
 
-// For comparison of
-// two heap nodes (needed in min heap)
-// utility function for the priority queue
+// For comparison of two heap nodes (needed in min heap)
 struct compare {
 
 	bool operator()(HuffmanNode* l, HuffmanNode* r)
