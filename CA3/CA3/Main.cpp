@@ -5,12 +5,15 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <bitset>
+#include <sstream>
 using namespace std;
 //http://www.cplusplus.com/forum/beginner/66019/
 //http://www.dreamincode.net/forums/topic/49604-letter-frequencies-in-a-text-file/
 //https://www.geeksforgeeks.org/huffman-decoding/
 //https://stackoverflow.com/questions/4527686/how-to-update-stdmap-after-using-the-find-method
 //https://stackoverflow.com/questions/478075/creating-files-in-c
+//https://stackoverflow.com/questions/23344257/convert-a-string-of-binary-into-an-ascii-string-c
 
 map<char, int >charList;
 map<char, string> codes;
@@ -142,25 +145,46 @@ void decode(struct HuffmanNode* root)
 		}		
 	}
 	outfile << ans;
-	outfile.close();
-
-	//return ans+'\0';
+	outfile.close();	
 };
+
+
+
+void compress()
+{
+	ifstream infile;
+	ofstream outfile("compressed.txt");
+	infile.open("C:\\Users\\X00121692\\Desktop\\test.txt");
+	string encodedString;
+	while (getline(infile, encodedString));
+	stringstream sstream(encodedString);
+	string output;
+
+	while (sstream.good())
+	{
+		bitset<8> set8;
+		sstream >> set8;
+		char c = char(set8.to_ulong());
+		output += c;
+	}
+
+	std::cout << output;
+}
 
 int main()
 {
 	char size = charList.size();
 	
 	
-	characterFreq();
+	/*characterFreq();
 	HuffmanCodes(size);
 	cout << endl;
 	printCodes(minHeap.top(), "");
 
 	cout << endl;
 	cout << endl;
-	decode(minHeap.top());
-
+	decode(minHeap.top());*/
+	compress();
 
 	system("pause");
 	return 0;
